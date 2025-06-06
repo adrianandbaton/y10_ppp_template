@@ -56,7 +56,20 @@ def distribute_cards(number, deck):
 
     return player_deck
 
-def next_turn():
+def next_turn(player_deck, player1_deck, player2_deck):
+    valid = True
+    while valid:
+        turn = int(input("Who's turn is it? Player1 or player2?"))
+        if turn == 1: 
+            player_deck = player1_deck
+            valid = False
+        elif turn == 2:
+            player_deck = player2_deck
+            valid = False
+        else: 
+            print('Please enter a valid player!')
+            turn = int(input("Who's turn is it? Player1 or player2?"))
+
     ready = input("Has the laptop passed to the next user? (Y?N)")
     while ready.upper() != 'Y':
         ready = input("OK, now has the laptop been passed (Y/N)")
@@ -82,17 +95,21 @@ def play_card(player_deck, center_card, deck):
             card = input("This card is not valid, please reenter")
         player_deck.remove(card)
         center_card = card
-        
-    
-        
+    if '+2' in card: 
+        next_turn()
+        draw_two(player_deck)
+
+def draw_two(player_deck, deck):
+    player_deck += deck[random.randint(0,104)]
+    player_deck += deck[random.randint(0,104)]
 
 
 
 
 def main(deck):
-    center_card = deck[0]
-    if '+2' in center_card or center_card[1] == 'R' or 
+    y = 0
+    center_card = deck[y]
+    while '+2' in center_card or center_card[1] == 'R' or 'S' in center_card:
+        center_card = deck[y+1]
     player1_deck = distribute_cards(7,deck)
     player2_deck = distribute_cards(7,deck)
-
-    
