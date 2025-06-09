@@ -12,7 +12,7 @@ deck = ['R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 
 random.shuffle(deck)
 
 rules = input('Do you want to review the rules?(Y/N)')
-while rules != "N" or rules != "Y":
+while rules != "N" and rules != "Y":
     rules = input("Please reenter with (Y/N)")
 if rules == 'Y':
     print("""Each player has 7 cards 
@@ -81,7 +81,7 @@ def draw_card(player_deck, deck):
     player_deck.append(x)
     return player_deck
 
-def play_card(player_deck, center_card, deck):
+def play_card(player_deck, center_card, player1_deck, player2_deck, deck):
     card = input("What card do you wish to place?, press 'd' to draw card")
     if card == 'd':
         draw_card(player_deck, deck)
@@ -98,10 +98,43 @@ def play_card(player_deck, center_card, deck):
     if '+2' in card: 
         next_turn()
         draw_two(player_deck)
+    if card[2] == 'R':
+        valid = True
+    while valid:
+        turn = int(input("Who's turn is it? Player1 or player2?"))
+        if turn == 1: 
+            player_deck = player1_deck
+            valid = False
+        elif turn == 2:
+            player_deck = player2_deck
+            valid = False
+        else: 
+            print('Please enter a valid player!')
+            turn = int(input("Who's turn is it? Player1 or player2?"))
+        
 
-def draw_two(player_deck, deck):
+def draw_two(player_deck, player1_deck, player2_deck, deck):
+    for i in range(2):
+        draw_one(player_deck, player1_deck, player2_deck, deck)
+
+def draw_one(player_deck, player1_deck, player2_deck, deck):
+    who = int(input('Which player is going to draw 2?'))
+    if who == 1: 
+        player_deck = player1_deck
+    else: 
+        player_deck = player2_deck
     player_deck += deck[random.randint(0,104)]
-    player_deck += deck[random.randint(0,104)]
+
+def draw_five(player_deck, player1_deck, player2_deck, deck):
+    for i in range(5):
+        draw_one(player_deck, player1_deck, player2_deck, deck)
+
+def wild_draw_four(player_deck, player1_deck, player2_deck, deck, center_card):
+    for i in range(4):
+        draw_one(player_deck, player1_deck, player2_deck, deck)
+    center_colour = input('what colour do you want to change the center card to?')
+    if center_colour == 'Y':
+
 
 
 
@@ -113,3 +146,5 @@ def main(deck):
         center_card = deck[y+1]
     player1_deck = distribute_cards(7,deck)
     player2_deck = distribute_cards(7,deck)
+
+main(deck)
