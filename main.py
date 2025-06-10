@@ -51,9 +51,7 @@ You cannot play after you draw""")
 def distribute_cards(number, deck):
     player_deck = []
     for i in range(number):
-        x = deck.pop[i]
-        player_deck.append(x)
-
+        player_deck.append(deck[random.randint(0,104)])
     return player_deck
 
 def next_turn(player_deck, player1_deck, player2_deck):
@@ -77,11 +75,28 @@ def next_turn(player_deck, player1_deck, player2_deck):
         os.system('clear')
 
 def draw_card(player_deck, deck):
-    x = deck[0]
+    x = deck[random.randint(0,104)]
     player_deck.append(x)
     return player_deck
 
+def whos_turn(player_deck, player1_deck, player2_deck, deck):
+    valid = True
+    while valid:
+        turn = int(input("Who's turn is it? Player 1 or player 2?"))
+        if turn == 1: 
+            player_deck = player1_deck
+            valid = False
+        elif turn == 2:
+            player_deck = player2_deck
+            valid = False
+        else: 
+            print('Please enter a valid player!')
+            turn = int(input("Who's turn is it? Player 1 or player 2?"))
+    return player_deck
+
+
 def play_card(player_deck, center_card, player1_deck, player2_deck, deck):
+    whos_turn(player_deck)
     card = input("What card do you wish to place?, press 'd' to draw card")
     if card == 'd':
         draw_card(player_deck, deck)
@@ -95,23 +110,22 @@ def play_card(player_deck, center_card, player1_deck, player2_deck, deck):
             card = input("This card is not valid, please reenter")
         player_deck.remove(card)
         center_card = card
+
     if '+2' in card: 
-        next_turn()
+        center_card = card
+        next_turn(player_deck, player1_deck, player2_deck)
         draw_two(player_deck)
-    if card[2] == 'R':
-        valid = True
-    while valid:
-        turn = int(input("Who's turn is it? Player1 or player2?"))
-        if turn == 1: 
-            player_deck = player1_deck
-            valid = False
-        elif turn == 2:
-            player_deck = player2_deck
-            valid = False
-        else: 
-            print('Please enter a valid player!')
-            turn = int(input("Who's turn is it? Player1 or player2?"))
-        
+        next_turn(player_deck, player1_deck, player2_deck)
+
+    if card[1] == 'R':
+        center_card = card
+        next_turn(player_deck, player1_deck, player2_deck)
+        next_turn(player_deck, player1_deck, player2_deck)
+    if 'S' in card:
+        center_card = card
+        next_turn(player_deck, player1_deck, player2_deck)
+        next_turn(player_deck, player1_deck, player2_deck)
+
 
 def draw_two(player_deck, player1_deck, player2_deck, deck):
     for i in range(2):
@@ -124,8 +138,9 @@ def draw_one(player_deck, player1_deck, player2_deck, deck):
     else: 
         player_deck = player2_deck
     player_deck += deck[random.randint(0,104)]
+    return player_deck
 
-def draw_five(player_deck, player1_deck, player2_deck, deck):
+def draw_five(player_deck, player1_deck, player2_deck, deck, center_card):
     for i in range(5):
         draw_one(player_deck, player1_deck, player2_deck, deck)
 
@@ -133,10 +148,23 @@ def wild_draw_four(player_deck, player1_deck, player2_deck, deck, center_card):
     for i in range(4):
         draw_one(player_deck, player1_deck, player2_deck, deck)
     center_colour = input('what colour do you want to change the center card to?')
-    if center_colour == 'Y':
-
-
-
+    valid = True
+    while valid: 
+        if center_colour == 'Y':
+            center_card[0] = 'Y'
+            valid = False
+        elif center_colour == 'R':
+            center_card[0] = 'R'
+            valid = False
+        elif center_colour == 'G':
+            center_card[0] = 'G'
+            valid = False
+        elif center_colour == 'B':
+            center_card[0] = 'B'
+            valid = False
+        else: 
+            print('Invalid colour, please reenter')
+            center_colour = input('what colour do you want to change the center card to?')
 
 
 def main(deck):
@@ -146,5 +174,10 @@ def main(deck):
         center_card = deck[y+1]
     player1_deck = distribute_cards(7,deck)
     player2_deck = distribute_cards(7,deck)
+    print(player1_deck)
+    print(player2_deck)
+
+
+
 
 main(deck)
