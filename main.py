@@ -171,7 +171,7 @@ def skip(card ,player_deck, center_card, player1_deck, player2_deck, deck):
 def check_win(player_deck, player1_deck, player2_deck, deck):
     whos_turn(player_deck, player1_deck, player2_deck, deck)
     if player_deck == player1_deck and player_deck == 0: 
-        print('Player 1 has won!')
+        printslow('Player 1 has won!')
         return True
     elif player_deck == player2_deck and player_deck == 0: 
         print('Player 2 has won!') 
@@ -192,8 +192,9 @@ def main(player_deck, player1_deck, player2_deck, deck):
     print(player1_deck)
     print(player2_deck)
     while check_win(player_deck, player1_deck, player2_deck, deck)  == True: 
-        x = whos_turn(player_deck, player1_deck, player2_deck, deck)
-        y = play_card(player_deck, center_card, player1_deck, player2_deck, deck)
+        player_deck = whos_turn(player_deck, player1_deck, player2_deck, deck)
+        center_card, card, player1_deck, player2_deck, player_deck = play_card(player_deck, center_card, player1_deck, player2_deck, deck)
+
 
 
 
