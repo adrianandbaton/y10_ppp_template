@@ -65,7 +65,7 @@ def next_turn(player_deck, player1_deck, player2_deck):
         os.system('clear')
     elif ready == 'Q' or 'q':
         quit()
-    return ready
+    return ready, player_deck, player1_deck, player2_deck
 
 def draw_card(player_deck, deck):
     x = deck[random.randint(0,104)]
@@ -171,7 +171,7 @@ def skip(card ,player_deck, center_card, player1_deck, player2_deck, deck):
 def check_win(player_deck, player1_deck, player2_deck, deck):
     whos_turn(player_deck, player1_deck, player2_deck, deck)
     if player_deck == player1_deck and player_deck == 0: 
-        printslow('Player 1 has won!')
+        print('Player 1 has won!')
         return True
     elif player_deck == player2_deck and player_deck == 0: 
         print('Player 2 has won!') 
@@ -194,6 +194,7 @@ def main(player_deck, player1_deck, player2_deck, deck):
     while check_win(player_deck, player1_deck, player2_deck, deck)  == True: 
         player_deck = whos_turn(player_deck, player1_deck, player2_deck, deck)
         center_card, card, player1_deck, player2_deck, player_deck = play_card(player_deck, center_card, player1_deck, player2_deck, deck)
+        next_turn(player_deck, player1_deck, player2_deck)
 
 
 
