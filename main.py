@@ -57,7 +57,7 @@ def distribute_cards(number, deck):
     return player_deck
 
 def next_turn(player_deck, player1_deck, player2_deck):
-    whos_turn(player_deck, player1_deck, player2_deck, deck)
+    player_deck = whos_turn(player_deck, player1_deck, player2_deck, deck)
     ready = input("Has the laptop passed to the next user? (Y?N)")
     while ready.upper() != 'Y':
         ready = input("OK, now has the laptop been passed (Y/N)")
@@ -89,7 +89,7 @@ def whos_turn(player_deck, player1_deck, player2_deck, deck):
 
 
 def play_card(player_deck, center_card, player1_deck, player2_deck, deck):
-    whos_turn(player_deck, player1_deck, player2_deck, deck)
+    player_deck = whos_turn(player_deck, player1_deck, player2_deck, deck)
     card = input("What card do you wish to place?, press 'd' to draw card")
     if card == 'd':
         draw_card(player_deck, deck)
@@ -169,7 +169,7 @@ def skip(card ,player_deck, center_card, player1_deck, player2_deck, deck):
     
 
 def check_win(player_deck, player1_deck, player2_deck, deck):
-    whos_turn(player_deck, player1_deck, player2_deck, deck)
+    player_deck = whos_turn(player_deck, player1_deck, player2_deck, deck)
     if player_deck == player1_deck and player_deck == 0: 
         print('Player 1 has won!')
         return True
