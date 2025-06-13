@@ -117,7 +117,7 @@ def play_card(player_deck, center_card, player1_deck, player2_deck, deck):
         center_card = card
         skip(card ,player_deck, center_card, player1_deck, player2_deck, deck)
     
-    return card, center_card
+    return card, center_card, player_deck, player1_deck, player2_deck
 
 
 def draw_two(player_deck, player1_deck, player2_deck, deck):
