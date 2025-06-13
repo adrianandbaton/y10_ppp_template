@@ -170,10 +170,10 @@ def skip(card ,player_deck, center_card, player1_deck, player2_deck, deck):
 
 def check_win(player_deck, player1_deck, player2_deck, deck):
     player_deck = whos_turn(player_deck, player1_deck, player2_deck, deck)
-    if player_deck == player1_deck and player_deck == 0: 
+    if player1_deck == 0: 
         print('Player 1 has won!')
         return True
-    elif player_deck == player2_deck and player_deck == 0: 
+    elif player2_deck == 0: 
         print('Player 2 has won!') 
         return True
     else: 
@@ -186,7 +186,7 @@ def check_win(player_deck, player1_deck, player2_deck, deck):
 def main(player_deck, player1_deck, player2_deck, deck):
     center_card = deck[random.randint(0,104)]
     while '+2' in center_card or center_card[1] == 'R' or 'S' in center_card:
-        center_card = deck[deck[random.randint(0,104)]]
+        center_card = deck[random.randint(0,104)]
     player1_deck = distribute_cards(7,deck)
     player2_deck = distribute_cards(7,deck)
     print(player1_deck)
