@@ -45,7 +45,9 @@ Draw 5 – opponents draw 5
 
 Skip everyone – goes back to your turn 
 
-You cannot play after you draw""")
+You cannot play after you draw
+
+If you want to stop the game, press 'q' at the end of each turn""")
 
 
 def distribute_cards(number, deck):
@@ -61,6 +63,8 @@ def next_turn(player_deck, player1_deck, player2_deck):
         ready = input("OK, now has the laptop been passed (Y/N)")
     if ready  == 'Y':
         os.system('clear')
+    elif ready == 'Q' or 'q':
+        quit()
 
 def draw_card(player_deck, deck):
     x = deck[random.randint(0,104)]
