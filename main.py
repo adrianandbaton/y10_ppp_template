@@ -172,9 +172,12 @@ def check_win(player_deck, player1_deck, player2_deck, deck):
     whos_turn(player_deck, player1_deck, player2_deck, deck)
     if player_deck == player1_deck and player_deck == 0: 
         print('Player 1 has won!')
+        return True
     elif player_deck == player2_deck and player_deck == 0: 
         print('Player 2 has won!') 
-    return 
+        return True
+    else: 
+        return False
 
 
 
@@ -188,6 +191,9 @@ def main(player_deck, player1_deck, player2_deck, deck):
     player2_deck = distribute_cards(7,deck)
     print(player1_deck)
     print(player2_deck)
+    while next_turn(player_deck, player1_deck, player2_deck, deck) != 'Q' or check_win(player_deck, player1_deck, player2_deck, deck)  == True: 
+        whos_turn(player_deck, player1_deck, player2_deck, deck)
+        play_card(player_deck, center_card, player1_deck, player2_deck, deck)
 
 
 
