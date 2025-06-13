@@ -194,7 +194,7 @@ def main(player_deck, player1_deck, player2_deck, deck):
     while check_win(player_deck, player1_deck, player2_deck, deck)  == True: 
         player_deck = whos_turn(player_deck, player1_deck, player2_deck, deck)
         center_card, card, player1_deck, player2_deck, player_deck = play_card(player_deck, center_card, player1_deck, player2_deck, deck)
-        next_turn(player_deck, player1_deck, player2_deck)
+        ready, player2_deck, player1_deck, player_deck = next_turn(player_deck, player1_deck, player2_deck)
 
 
 
