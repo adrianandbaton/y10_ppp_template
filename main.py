@@ -191,9 +191,9 @@ def main(player_deck, player1_deck, player2_deck, deck):
     player2_deck = distribute_cards(7,deck)
     print(player1_deck)
     print(player2_deck)
-    while next_turn(player_deck, player1_deck, player2_deck, deck) != 'Q' or check_win(player_deck, player1_deck, player2_deck, deck)  == True: 
-        whos_turn(player_deck, player1_deck, player2_deck, deck)
-        play_card(player_deck, center_card, player1_deck, player2_deck, deck)
+    while check_win(player_deck, player1_deck, player2_deck, deck)  == True: 
+        x = whos_turn(player_deck, player1_deck, player2_deck, deck)
+        y = play_card(player_deck, center_card, player1_deck, player2_deck, deck)
 
 
 
