@@ -134,7 +134,7 @@ def main(deck):
 
     first = input("Who wants to go first?")
     while first != player1 and first != player2:
-        print("Bro really? Not funny")
+        print("Invalid player, please reenter")
         first = input("Who wants to go first?")
     
     if first == player1:
