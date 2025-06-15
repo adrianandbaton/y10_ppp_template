@@ -112,6 +112,14 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
         print("Since you placed a +2 card, 2 cards are added to {}'s deck".format(other_player))
         card_drawn, deck = draw_card(other_deck, deck, 2)
     
+    if "+5" in card:
+        print("Since you placed a +5 card, 5 cards are added to {}'s deck".format(other_player))
+        card_drawn, deck = draw_card(other_deck, deck, 5)
+        
+    if "+1" in card:
+        print("Since you placed a +1 card, 1 cards are added to {}'s deck".format(other_player))
+        card_drawn, deck = draw_card(other_deck, deck, 1)
+    
     if "S" in card:
         print("Since you have drawn the skip card, {}'s turn is skipped.".format(other_player))
         repeat = True
