@@ -2,20 +2,20 @@ import random
 import os
 
 deck = [
-'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 
-'Y0', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6','Y7', 'Y8', 'Y9', 'Y+2', 'YS',
-'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS',
-'B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6','B7', 'B8', 'B9', 'B+2', 'BS',
-'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 
-'Y0', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6','Y7', 'Y8', 'Y9', 'Y+2', 'YS',
-'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS',
+'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 'RF',
+'Y0', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6','Y7', 'Y8', 'Y9', 'Y+2', 'YS', 'YF',
+'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS', 'GF', 
+'B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6','B7', 'B8', 'B9', 'B+2', 'BS', 'BF', 
+'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 'RF', 
+'Y0', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6','Y7', 'Y8', 'Y9', 'Y+2', 'YS', 'YF', 
+'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS', 'GF'
 'B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6','B7', 'B8', 'B9', 'B+2', 'BS', 'WD4', 'WD4']
 random.shuffle(deck)
 flipped_deck = [
-'O0', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8', 'O9', 'O+1', 'O+5', 'OS', 
-'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS',
-'T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T+1', 'T+5', 'TS',
-'P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P+1', 'P+5', 'PS',
+'O0', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8', 'O9', 'O+1', 'O+5', 'OS', 'OF', 
+'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS', 'MF', 
+'T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T+1', 'T+5', 'TS', 'TF', 
+'P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P+1', 'P+5', 'PS', 'PF', 
 'O0', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8', 'O9', 'O+1', 'O+5', 'OS', 
 'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS',
 'T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T+1', 'T+5', 'TS',
@@ -80,7 +80,7 @@ def next_turn():
         print("Ok Bro, has it been passed now?")
     
     os.system('clear')
-def play_card(main_deck, other_deck, deck, center_card, main_player, other_player):
+def play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck):
     print("Center card is {}".format(center_card))
     repeat = False
     print("It is now {}'s turn!".format(main_player))
@@ -114,9 +114,13 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
     if "S" in card:
         print("Since you have drawn the skip card, {}'s turn is skipped.".format(other_player))
         repeat = True
+    
+    if 'F' in card:
+        deck = flipped_deck
         
     if repeat == True:
-        play_card(main_deck, other_deck, deck, center_card, main_player, other_player)
+        play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck)
+    
     
 
 def main(deck):
