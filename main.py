@@ -1,5 +1,8 @@
 import random
 import os
+import colorama
+
+colorama.init()
 
 deck = [
 'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 'RF',
@@ -61,16 +64,14 @@ Draw 5 – opponents draw 5
 
 Skip everyone – goes back to your turn 
 
-You cannot play after you draw
-
-If you want to stop the game, press 'q' at the end of each turn""")
+You cannot play after you draw""")
     else:
         print("OK, let's start")
 def draw_card(player_deck, deck, number):
     for i in range(number):
         x = deck.pop(0)
         player_deck.append(x)
-    return x,deck
+    return x, deck
 
     return player_deck
 def next_turn():
@@ -78,11 +79,13 @@ def next_turn():
     ready = input("Has the laptop been passed? (Y/N)")
 
     while ready.upper() != 'Y':
-        print("Ok Bro, has it been passed now?")
+        print("Has it been passed now?")
+        ready = input("Has the laptop been passed? (Y/N)")
     
     os.system('clear')
 def play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck):
-    print("Center card is {}".format(center_card))
+    print(colorama.Back.YELLOW + "Center card is {}".format(center_card))
+    print(colorama.Back.RESET)
     repeat = False
     print("It is now {}'s turn!".format(main_player))
     print("This is your deck: ")
@@ -129,8 +132,7 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
         
     if repeat == True:
         play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck)
-    
-    
+    main_deck.remove(card)
 
 def main(deck):
 
@@ -152,17 +154,17 @@ def main(deck):
     
     if first == player1:
         while len(player1_deck) != 0 and len(player2_deck) != 0:
-            play_card(player1_deck, player2_deck, deck, center_card, player1, player2)
+            play_card(player1_deck, player2_deck, deck, center_card, player1, player2,flipped_deck)
             next_turn()
-            play_card(player2_deck, player1_deck, deck, center_card, player2, player1)
-            next_turn
+            play_card(player2_deck, player1_deck, deck, center_card, player2, player1,flipped_deck)
+            next_turn()
     
     elif first == player2:
         while len(player1_deck) != 0 and len(player2_deck) != 0:
-            play_card(player2_deck, player1_deck, deck, center_card, player2, player1)
+            play_card(player2_deck, player1_deck, deck, center_card, player2, player1, flipped_deck)
             next_turn()
-            play_card(player1_deck, player2_deck, deck, center_card, player1, player2)
-            next_turn
+            play_card(player1_deck, player2_deck, deck, center_card, player1, player2, flipped_deck)
+            next_turn()
     
     if len(player1_deck) == 0:
         print("Congrats, {} won!!!".format(player1))
