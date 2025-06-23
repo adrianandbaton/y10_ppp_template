@@ -104,12 +104,13 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
         print("{} is successfully placed".format(card))
         center_card = card
 
-    if 'S' or 'F'or'+2' or '+1' or '+5' in center_card or center_card[1] == 'R':
-        center_card = deck.pop(1)
+    while 'S' or 'F'or'+2' or '+1' or '+5' in center_card:
+        center_card = deck.pop(random.randint(0,len(deck)-1))
 
     if card == 'd':
         card_drawn, deck, _  = draw_card(main_deck, deck, 1)
         print("You have drawn the card {}".format(card_drawn))
+        deck.remove(card_drawn)
     
     if "+2" in card:
         print("Since you placed a +2 card, 2 cards are added to {}'s deck".format(other_player))
@@ -129,6 +130,7 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
     
     if 'F' in card:
         deck = flipped_deck
+        center_card = flipped_deck.pop(0)
         
     if repeat == True:
         play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck)
@@ -141,6 +143,11 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
     if 'WD4' == center_card:
         current_center_colour = input('What colour do you want to change the code to?')
         center_colour = current_center_colour
+
+    main_deck.remove(card)
+
+
+    return center_card, card, center_colour, main_deck, other_deck, deck
 
 def main(deck):
 
@@ -162,16 +169,16 @@ def main(deck):
     
     if first == player1:
         while len(player1_deck) != 0 and len(player2_deck) != 0:
-            play_card(player1_deck, player2_deck, deck, center_card, player1, player2,flipped_deck)
+            center_card, card, center_colour, main_deck, other_deck, deck = play_card(player1_deck, player2_deck, deck, center_card, player1, player2,flipped_deck)
             next_turn()
-            play_card(player2_deck, player1_deck, deck, center_card, player2, player1,flipped_deck)
+            center_card, card, center_colour, main_deck, other_deck, deck = play_card(player2_deck, player1_deck, deck, center_card, player2, player1,flipped_deck)
             next_turn()
     
     elif first == player2:
         while len(player1_deck) != 0 and len(player2_deck) != 0:
-            play_card(player2_deck, player1_deck, deck, center_card, player2, player1, flipped_deck)
+            center_card, card, center_colour, main_deck, other_deck, deck = play_card(player2_deck, player1_deck, deck, center_card, player2, player1, flipped_deck)
             next_turn()
-            play_card(player1_deck, player2_deck, deck, center_card, player1, player2, flipped_deck)
+            center_card, card, center_colour, main_deck, other_deck, deck = play_card(player1_deck, player2_deck, deck, center_card, player1, player2, flipped_deck)
             next_turn()
     
     if len(player1_deck) == 0:
