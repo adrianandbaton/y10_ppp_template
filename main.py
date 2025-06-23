@@ -105,7 +105,7 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
         center_card = card
 
     while 'S' or 'F'or'+2' or '+1' or '+5' in center_card:
-        center_card = deck.pop(random.randint(0,len(deck)-1))
+        center_card = deck.pop(random.randint(-1,len(deck)-1))
 
     if card == 'd':
         card_drawn, deck, _  = draw_card(main_deck, deck, 1)
