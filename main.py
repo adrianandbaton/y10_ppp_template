@@ -5,25 +5,26 @@ import colorama
 colorama.init()
 
 deck = [
-'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 'RF',
+'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 'RF', 
 'Y0', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6','Y7', 'Y8', 'Y9', 'Y+2', 'YS', 'YF',
 'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS', 'GF', 
 'B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6','B7', 'B8', 'B9', 'B+2', 'BS', 'BF', 
-'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 'RF', 
-'Y0', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6','Y7', 'Y8', 'Y9', 'Y+2', 'YS', 'YF', 
-'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS', 'GF',
-'B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6','B7', 'B8', 'B9', 'B+2', 'BS', 'BF',
+'R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6','R7', 'R8', 'R9', 'R+2', 'RS', 'RF',  
+'Y0', 'Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6','Y7', 'Y8', 'Y9', 'Y+2', 'YS', 'YF',  
+'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS', 'GF', 
+'B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6','B7', 'B8', 'B9', 'B+2', 'BS', 'BF', 
 'WD4', 'WD4']
 random.shuffle(deck)
 flipped_deck = [
-'O0', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8', 'O9', 'O+1', 'O+5', 'OS', 'OF', 
-'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS', 'MF', 
+'O0', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8', 'O9', 'O+1', 'O+5', 'OS', 'OF',  
+'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS', 'MF',  
 'T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T+1', 'T+5', 'TS', 'TF', 
 'P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P+1', 'P+5', 'PS', 'PF', 
 'O0', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8', 'O9', 'O+1', 'O+5', 'OS', 'OF', 
 'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS', 'MF',
 'T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T+1', 'T+5', 'TS', 'TF', 
-'P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P+1', 'P+5', 'PS', 'PF']
+'P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P+1', 'P+5', 'PS', 'PF', 
+]
 random.shuffle(flipped_deck)
 
 def introduction():
@@ -87,6 +88,7 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
     print(main_deck)
     
     card = input("Which card would you like to place, press d to draw: ")
+    
 
     while card not in main_deck and card != 'd':
         print("That card is not in your deck")
@@ -101,22 +103,25 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
                 break
         print("{} is successfully placed".format(card))
         center_card = card
-    
+
+    if 'S' or 'F'or'+2' or '+1' or '+5' in center_card or center_card[1] == 'R':
+        center_card = deck.pop(1)
+
     if card == 'd':
-        card_drawn, deck = draw_card(main_deck, deck, 1)
+        card_drawn, deck, _  = draw_card(main_deck, deck, 1)
         print("You have drawn the card {}".format(card_drawn))
     
     if "+2" in card:
         print("Since you placed a +2 card, 2 cards are added to {}'s deck".format(other_player))
-        card_drawn, deck = draw_card(other_deck, deck, 2)
+        card_drawn, deck, _ = draw_card(other_deck, deck, 2)
     
     if "+5" in card:
         print("Since you placed a +5 card, 5 cards are added to {}'s deck".format(other_player))
-        card_drawn, deck = draw_card(other_deck, deck, 5)
+        card_drawn, deck, _ = draw_card(other_deck, deck, 5)
         
     if "+1" in card:
         print("Since you placed a +1 card, 1 card are added to {}'s deck".format(other_player))
-        card_drawn, deck = draw_card(other_deck, deck, 1)
+        card_drawn, deck, _ = draw_card(other_deck, deck, 1)
     
     if "S" in card:
         print("Since you have drawn the skip card, {}'s turn is skipped.".format(other_player))
@@ -129,12 +134,13 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
         play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck)
 
     center_colour = center_card[0]
-    if 'WD4' == center_card:
-        current_center_colour = input('What colour do you want to change the code to?')
+    if card == 'WD4': 
         print("Since you placed a +4 card, 4 cards are added to {}'s deck".format(other_player))
         card_drawn, deck = draw_card(other_deck, deck, 4)
+
+    if 'WD4' == center_card:
+        current_center_colour = input('What colour do you want to change the code to?')
         center_colour = current_center_colour
-    main_deck.remove(card)
 
 def main(deck):
 
@@ -142,8 +148,8 @@ def main(deck):
     print()
     player1_deck = []
     player2_deck = []
-    card_drawn, deck = draw_card(player1_deck, deck, 7)
-    crd_drawn, deck = draw_card(player2_deck, deck, 7)
+    card_drawn, deck, player_deck = draw_card(player1_deck, deck, 7)
+    crd_drawn, deck, player_deck = draw_card(player2_deck, deck, 7)
 
     player1 = input("Player 1, enter your name: ")
     player2 = input("Player 2, enter your name: ")
