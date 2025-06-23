@@ -24,7 +24,7 @@ flipped_deck = [
 'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS', 'MF',
 'T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T+1', 'T+5', 'TS', 'TF', 
 'P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P+1', 'P+5', 'PS', 'PF']
-
+random.shuffle(flipped_deck)
 
 def introduction():
     os.system('clear')
@@ -35,45 +35,40 @@ def introduction():
         rules = input("Please reenter with (Y/N)")
     if rules == 'Y':
         print("""Each player has 7 cards 
+        
+        First one to use all their cards win 
 
-First one to use all their cards win 
+        You can put a card of the same colour on top of each other 
 
-You can put a card of the same colour on top of each other 
+        You can put a card with the same number or action on top of each other  
 
-You can put a card with the same number or action on top of each other  
+        Action cards:
 
-Action cards  
+        Reverse(R) – goes back to your turn 
 
-Reverse – goes back to your turn 
+        Skip(S) – goes back to your turn 
 
-Skip – goes back to your turn 
+        Draw 2 – opponent draws 2 
 
-Draw 2 – opponent draws 2 
+        Wild draw 4 – opponent draws 4, and you get to choose the colour of the next card placed 
 
-Wild draw 4 – opponent draws 4, and you get to choose the colour of the next card placed 
+        Flip – flip every card 
 
-Change colour – changes the colour of the next card placed 
+        Draw 1 – opponents draw 1 
 
-Flip – flip every card 
+        Draw 5 – opponents draw 5 
 
-Wild draw colour card – draw until you get the colour chosen and then said colour will be the colour of the next card placed 
+        Skip everyone – goes back to your turn 
 
-Draw 1 – opponents draw 1 
-
-Draw 5 – opponents draw 5 
-
-Skip everyone – goes back to your turn 
-
-You cannot play after you draw""")
+        You cannot play after you draw""")
     else:
         print("OK, let's start")
 def draw_card(player_deck, deck, number):
     for i in range(number):
         x = deck.pop(0)
         player_deck.append(x)
-    return x, deck
+    return x, deck, player_deck
 
-    return player_deck
 def next_turn():
     print("Please pass the laptop to another person")
     ready = input("Has the laptop been passed? (Y/N)")
@@ -120,7 +115,7 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
         card_drawn, deck = draw_card(other_deck, deck, 5)
         
     if "+1" in card:
-        print("Since you placed a +1 card, 1 cards are added to {}'s deck".format(other_player))
+        print("Since you placed a +1 card, 1 card are added to {}'s deck".format(other_player))
         card_drawn, deck = draw_card(other_deck, deck, 1)
     
     if "S" in card:
@@ -132,6 +127,13 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
         
     if repeat == True:
         play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck)
+
+    center_colour = center_card[0]
+    if 'WD4' == center_card:
+        current_center_colour = input('What colour do you want to change the code to?')
+        print("Since you placed a +4 card, 4 cards are added to {}'s deck".format(other_player))
+        card_drawn, deck = draw_card(other_deck, deck, 4)
+        center_colour = current_center_colour
     main_deck.remove(card)
 
 def main(deck):
@@ -170,6 +172,6 @@ def main(deck):
         print("Congrats, {} won!!!".format(player1))
     else:
         print("What an unexpected turn of events, who would have believes that {} won???".format(player2))
-        print("GGs")
+        print("Well Played")
 
 main(deck)
