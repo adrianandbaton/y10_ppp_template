@@ -79,6 +79,7 @@ def next_turn():
         ready = input("Has the laptop been passed? (Y/N)")
     
     os.system('clear')
+    
 def play_card(main_deck, other_deck, deck, center_card, main_player, other_player, flipped_deck):
     print(colorama.Back.YELLOW + "Center card is {}".format(center_card))
     print(colorama.Back.RESET)
