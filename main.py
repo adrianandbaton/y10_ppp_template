@@ -150,7 +150,7 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
 
     return center_card, card, center_colour, main_deck, other_deck, deck
 
-def main(deck, card_drawn, player_deck, player1_deck, plater2_deck):
+def main(deck, card_drawn, player_deck, player1_deck, player2_deck, center_card, main_deck, other_deck, center_colour):
 
     introduction()
     print()
