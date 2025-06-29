@@ -189,9 +189,9 @@ def main(deck, card_drawn, player_deck, player1_deck, player2_deck, center_card,
         print("Well Played")
 
 card_drawn = ''
-player_deck = ''
-player1_deck = ''
-player2_deck = ''
+player_deck = []
+player1_deck = []
+player2_deck = []
 center_card = ''
 main_deck = []
 other_deck = []
