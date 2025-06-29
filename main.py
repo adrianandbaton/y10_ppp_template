@@ -14,7 +14,7 @@ deck = [
 'G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6','G7', 'G8', 'G9', 'G+2', 'GS', 'GF', 
 'B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6','B7', 'B8', 'B9', 'B+2', 'BS', 'BF', 
 'WD4', 'WD4']
-random.shuffle(deck)
+deck = random.shuffle(deck)
 flipped_deck = [
 'O0', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8', 'O9', 'O+1', 'O+5', 'OS', 'OF',  
 'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M+1', 'M+5', 'MS', 'MF',  
@@ -25,7 +25,7 @@ flipped_deck = [
 'T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T+1', 'T+5', 'TS', 'TF', 
 'P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P+1', 'P+5', 'PS', 'PF', 
 ]
-random.shuffle(flipped_deck)
+flipped_deck = random.shuffle(flipped_deck)
 
 def introduction():
     os.system('clear')
