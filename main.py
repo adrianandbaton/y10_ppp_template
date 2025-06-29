@@ -150,7 +150,7 @@ def play_card(main_deck, other_deck, deck, center_card, main_player, other_playe
 
     return center_card, card, center_colour, main_deck, other_deck, deck
 
-def main(deck, card_drawn, player_deck,):
+def main(deck, card_drawn, player_deck, player1_deck, plater2_deck):
 
     introduction()
     print()
@@ -187,5 +187,6 @@ def main(deck, card_drawn, player_deck,):
     else:
         print("What an unexpected turn of events, who would have believes that {} won???".format(player2))
         print("Well Played")
+
 
 main(deck)
