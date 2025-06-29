@@ -193,7 +193,7 @@ player_deck = ''
 player1_deck = ''
 player2_deck = ''
 center_card = ''
-main_deck = ''
-other_deck = ''
+main_deck = []
+other_deck = []
 center_colour = ''
 main(deck, card_drawn, player_deck, player1_deck, player2_deck, center_card, main_deck, other_deck, center_colour)
