@@ -188,6 +188,7 @@ def main(deck, card_drawn, player_deck, player1_deck, player2_deck, center_card,
         print("What an unexpected turn of events, who would have believes that {} won???".format(player2))
         print("Well Played")
 
+
 card_drawn = ''
 player_deck = []
 player1_deck = []
